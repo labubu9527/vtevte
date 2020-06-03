@@ -3,7 +3,7 @@
  * @Desc: 左侧菜单
  * @Date: 2020-04-25 15:26:31
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-03 13:53:54
+ * @LastEditTime: 2020-06-03 23:59:14
  */
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
@@ -24,6 +24,8 @@ const LeftMenu = () => {
 	const menuClickHandle = (toPath, arrPath, newOpenIndex, newActiveIndex) => {
 
 		if(typeof newOpenIndex === 'number'){
+			// 点击一级菜单项的时候，同时重置之前选择的子菜单项
+			setActiveSubIndex(-1);
 			setOpenIndex(newOpenIndex);
 		}
 
