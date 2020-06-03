@@ -3,7 +3,7 @@
  * @Desc: 左侧菜单
  * @Date: 2020-04-25 15:26:31
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-03 10:52:55
+ * @LastEditTime: 2020-06-03 13:53:54
  */
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
@@ -48,7 +48,7 @@ const LeftMenu = () => {
 					<div onClick={() => menuClickHandle(toPath, arrPath, isOpen? -1: index)} className={style['first-title']}>
 						<img className={style['first-icon']} src={icon} alt=""/>
 						<span className={style['first-name']}>{name}</span>
-						<span className={style['first-arrow']}></span>
+						{subList && subList.length > 0 && <span className={style['first-arrow']}></span>}
 					</div>
 					<div className={style['sub-list']}>
 						{subList.map(({name: subName, toPath, roleCode}, subIndex) => {
