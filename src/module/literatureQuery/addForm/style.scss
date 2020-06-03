@@ -22,11 +22,13 @@
 		background: url('../icons/pdf.png') no-repeat center;
 	}
 	&::after{
+		@include ellipse;
 		content: attr(data-content);
 		position: absolute;
 		left: 32px;
 		top: 4px;
 		display: inline-block;
+		width: 340px;
 		height: 17px;
 		font-family: PingFangSC-Regular;
 		font-size: 14px;
