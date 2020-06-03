@@ -11,3 +11,10 @@
 	height: calc(100% - 45px - 64px);
 	overflow: auto;
 }
+
+.welcome{
+	@include flexCenter;
+	height: 100%;
+	font-family: PingFangSC-Medium;
+	font-size: 16px;
+}

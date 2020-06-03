@@ -3,7 +3,7 @@
  * @Desc: 右侧内容区
  * @Date: 2020-04-25 22:03:52
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-01 10:30:24
+ * @LastEditTime: 2020-06-04 00:13:56
  */
 import React from 'react';
 import {
@@ -58,7 +58,7 @@ const RightContent = () => {
 						<UserManagement/>
 					</Route>
 					<Route path="/">
-						<div>我是根目录</div>
+						<div class={style['welcome']}>欢迎光临</div>
 					</Route>
 				</Switch>
 			</div>
