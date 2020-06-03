@@ -1,0 +1,277 @@
+@import '../../common/common.scss';
+
+.wrap{
+	height: 100vh;
+}
+
+.top{
+	position: relative;
+	background: url('./icons/topBg.png') no-repeat center/cover;
+	height: 46%;
+}
+
+.top-logo{
+	position: absolute;
+	top: 13.6%;
+	left: 50%;
+	width: 59vh;
+	height: 9vh;
+	transform: translateX(-50%);
+	min-width: 506px;
+	min-height: 77px;
+	max-width: 633px;
+	max-height: 96px;
+	background: url('./icons/topLogo.png') no-repeat center/contain;
+}
+
+.bottom{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding-bottom: 18px;
+	line-height: 24px;
+	text-align: center;
+	border-bottom: 12px solid rgba(64,158,255,.5);
+	font-family: PingFangSC-Regular;
+	font-size: 16px;
+	color: #B8B8B8;
+	text-align: center;
+	line-height: 24px;
+}
+
+.content{
+	@include flexCenter;
+	z-index: 1;
+	position: absolute;
+	top: 27%;
+	left: 50%;
+	width: 86vh;
+	height: 54vh;
+	transform: translateX(-50%);
+	min-width: 740px;
+	min-height: 467px;
+	max-width: 926px;
+	max-height: 586px;
+	background: #FFFFFF;
+	box-shadow: 11px 10px 27px 0 rgba(0,0,0,0.12);
+	border-radius: 25px;
+}
+
+
+.login-form-wrap{
+	width: 570px;
+	.input{
+		height: 45px;
+		padding-left: 37px;
+		border-radius: 8px;
+		border: 1px solid #CACACA;
+		// border: 1px solid #0097DB;
+		&::-webkit-input-placeholder{
+			font-family: PingFangSC-Light;
+			font-size: 16px;
+			color: rgba(0,0,0,0.45);
+		}
+		&:focus{
+			border-color: #0097DB;
+		}
+	}
+	.username{
+		position: relative;
+		margin-bottom: 43px;
+		&::before{
+			content: '输入账号';
+			position: absolute;
+			left: 22px;
+			top: -15px;
+			z-index: 1;
+			height: 20px;
+			line-height: 20px;
+			padding: 0 17px;
+			background: #fff;
+			font-family: PingFangSC-Medium;
+			font-size: 16px;
+			color: rgba(72,72,72,.7);
+		}
+		> div > div:nth-child(2){
+			position: absolute;
+			top: 45px;
+		}
+	}
+	.password{
+		position: relative;
+		&::before{
+			content: '输入密码';
+			position: absolute;
+			left: 22px;
+			top: -15px;
+			z-index: 1;
+			height: 20px;
+			line-height: 20px;
+			padding: 0 17px;
+			background: #fff;
+			font-family: PingFangSC-Medium;
+			font-size: 16px;
+			color: rgba(72,72,72,.7);
+		}
+	}
+}
+
+.step-area{
+	@include flexCenter;
+	width: 100%;
+	height: 29%;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.open-account{
+	.title{
+		width: 660px;
+		height: 38px;
+		background: url('./icons/openAccount.png') no-repeat center;
+	}
+	.title2{
+		width: 680px;
+		height: 38px;
+		background: url('./icons/openAccount2.png') no-repeat center;
+	}
+	.form-wrap{
+		width: 570px;
+		margin: 7.4vh auto 0;
+		input{
+			border-radius: 4px;
+		}
+	}
+	.form-row{
+		margin-bottom: 40px;
+		> div > div:nth-child(2){
+			position: absolute;
+			top: 35px;
+		}
+	}
+	.tip{
+		width: 300px;
+		margin: 110px auto;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #333333;
+		> div{
+			@include flexYCenter;
+			margin-bottom: 15px;
+		}
+		i{
+			width: 17px;
+			height: 17px;
+			display: inline-block;
+			margin-right: 14px;
+			background: url('./icons/ok.png') no-repeat center;
+		}
+	}
+}
+
+.reset-password{
+	@include flexCenter;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	.form-wrap{
+		width: 570px;
+		margin: 6.5vh auto 0;
+		input{
+			border-radius: 4px;
+		}
+	}
+	.form-row{
+		margin-bottom: 40px;
+		> div > div:nth-child(2){
+			position: absolute;
+			top: 35px;
+		}
+	}
+	.form-btn-wrap{
+		margin-top: 6vh;
+	}
+	.input{
+		width: 325px;
+	}
+	.btn-send{
+		width: 120px;
+		padding: 0;
+		margin-left: 29px;
+		border-radius: 4px;
+	}
+	.btn-disabled{
+		background: #D8D8D8;
+		border-color: #D8D8D8;
+		pointer-events: none;
+		cursor: not-allowed;
+	}
+	.content-area{
+		@include flexCenter;
+		flex-grow: 1;
+		flex-direction: column;
+	}
+	.tip{
+		margin-top: -30%;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #333333;
+		> div{
+			@include flexYCenter;
+			margin-bottom: 15px;
+		}
+		i{
+			width: 17px;
+			height: 17px;
+			display: inline-block;
+			margin-right: 14px;
+			background: url('./icons/ok.png') no-repeat center;
+		}
+	}
+	.go-btn{
+		width: 123px;
+		height: 32px;
+		margin-top: 40px;
+		border-radius: 4px;
+	}
+}
+
+.form-btn-wrap{
+	> div{
+		max-width: 100%;
+	}
+}
+
+.form-btn{
+	@include hover;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	margin-top: 12px;
+	padding: 0;
+	text-align: center;
+	background: #409EFF;
+	border-radius: 8px;
+	font-family: PingFangSC-Medium;
+	font-size: 18px;
+	color: #FFFFFF;
+}
+
+.content-logo{
+	width: 443px;
+	height: 60px;
+	margin: 0 auto 77px;
+	background: url('./icons/contentLogo.png') no-repeat center;
+}
+
+.helper{
+	@include flexYCenter;
+	margin-top: -10px;
+	justify-content: space-between;
+	> span{
+		@include hover;
+		line-height: 30px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: rgba(0,151,219,.7);
+	}
+}

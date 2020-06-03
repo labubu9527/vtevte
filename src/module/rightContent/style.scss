@@ -1,0 +1,13 @@
+@import '~rootSrc/common/common.scss';
+
+.top-nav{
+	@include flexYCenter;
+	height: 45px;
+	padding-left: 24px;
+	background-color: #fff;
+}
+
+.route-content{
+	height: calc(100% - 45px - 64px);
+	overflow: auto;
+}

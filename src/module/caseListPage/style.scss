@@ -1,0 +1,167 @@
+@import '../../common/common.scss';
+
+.wrap{
+	border-top: 1px solid #edeef0;
+}
+
+.search-bar{
+	@include flexCenter;
+	margin-top: 6px;
+	input{
+		width: 376px;
+		height: 32px;
+		background: #FFFFFF;
+		border: 1px solid #C0C4CC;
+		border-right: 0;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #999999;
+	}
+	button{
+		width: 71px;
+		height: 32px;
+		background: #409EFF;
+		border: 0;
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #FFFFFF;
+		text-align: center;
+		line-height: 32px;
+		@include hover;
+	}
+}
+
+.list{
+	margin: 30px 0 0 30px;
+	li{
+		@include flexCenter;
+		position: relative;
+		flex-direction: column;
+		box-sizing: border-box;
+		float: left;
+		width: 280px;
+		height: 310px;
+		margin: 0 20px 20px 0;
+		padding: 18px 0;
+		background: #FFFFFF;
+		box-shadow: 2px 4px 7px 3px rgba(0,0,0,0.05);
+		border-radius: 8px;
+	}
+}
+
+.new{
+	@include hover;
+	&::before{
+		content: '';
+		width: 57px;
+		height: 57px;
+		background: url('./icons/new.png') no-repeat center;
+	}
+	&::after{
+		content: '新增案例';
+		height: 28px;
+		margin-top: 16px;
+		line-height: 28px;
+		font-family: PingFangSC-Semibold;
+		font-size: 20px;
+		color: #409EFF;
+	}
+}
+
+.edit-item{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 48px;
+	height: 48px;
+	@include hover;
+	background: url('./icons/edit.png') no-repeat center;
+}
+
+.icon{
+	width: 56px;
+	height: 55px;
+}
+
+.name{
+	@include ellipseMultiRow(3);
+	flex-shrink: 0;
+	overflow: hidden;
+	padding: 0 18px;
+	max-height: 84px;
+	line-height: 28px;
+	font-family: PingFangSC-Semibold;
+	font-size: 20px;
+	color: #409EFF;
+	margin-top: 13px;
+}
+
+.org{
+	@include flexYCenter;
+	width: 100%;
+	box-sizing: border-box;
+	margin-top: 11px;
+	border-top: 1px solid rgba(151,151,151,.33);
+	padding: 14px 18px 0;
+	span{
+		@include ellipse;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #595959;
+	}
+	&::before{
+		content: '';
+		flex-shrink: 0;
+		display: inline-block;
+		width: 15px;
+		height: 15px;
+		margin-right: 10px;
+		background: url('./icons/organization.png') no-repeat center;
+	}
+}
+
+.bottom{
+	@include flexCenter;
+	width: 100%;
+	height: 68px;
+	margin-top: 16px;
+	.total,.edit-detail{
+		@include flexCenter;
+		box-sizing: border-box;
+		width: 50%;
+		height: 100%;
+	}
+	.total{
+		flex-direction: column;
+		border-right: 1px solid #979797;
+	}
+	.text{
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #595959;
+	}
+	.number{
+		height: 33px;
+		line-height: 33px;
+		margin-top: 2px;
+		font-family: Alibaba-PuHuiTi-H;
+		font-size: 24px;
+		font-weight: bold;
+		color: #333333;
+	}
+	button{
+		width: 97px;
+		height: 32px;
+		background: #409EFF;
+		border-radius: 16px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #FFFFFF;
+		text-align: center;
+		line-height: 32px;
+	}
+}

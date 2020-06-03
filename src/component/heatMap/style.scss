@@ -1,0 +1,144 @@
+@import '~rootSrc/common/common.scss';
+
+.wrap{
+
+}
+
+.desc{
+	@include flexYCenter;
+	height: 46px;
+	justify-content: flex-end;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #666;
+	i{
+		display: inline-block;
+		width: 18px;
+		height: 16px;
+		margin-right: 15px;
+	}
+	> div{
+		@include flexCenter;
+		margin-left: 30px;
+	}
+}
+
+.empty-data{
+	background: #EDEDED;
+}
+
+.has-data{
+	background: #77CFFC;
+}
+
+.list-wrap{
+	border: 1px solid #EBEBEC;
+	border-radius: 2px;
+	.download{
+		display: block;
+		width: 100%;
+		height: 30px;
+		text-align: right;
+		background: #f7f7f7;
+		box-shadow: 0 4px 4px rgba(0,0,0,.15);
+		i{
+			@include hover;
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			vertical-align: top;
+			margin-right: 20px;
+			background: url('./icons/download.png') no-repeat center;
+		}
+	}
+}
+
+.list{
+	@include flexCenter;
+	align-items: flex-start;
+	padding: 5px 20px 20px;
+}
+
+.col-id{
+	width: 80px;
+	.item{
+		position: relative;
+		margin: 2px;
+		background: #fff;
+		&::before{
+			position: absolute;
+			content: '';
+			left: 0;
+			top: 0;
+			border-left: 10px solid #008300;
+			border-bottom: 4px dashed transparent;
+		}
+	}
+	.col-title{
+		&::after{
+			display: none;
+		}
+	}
+}
+
+.col-other{
+	flex-grow: 1;
+}
+
+.col-title-wrap{
+	@include flexCenter;
+	margin-bottom: 10px;
+	> span:nth-last-child(1){
+		&::after{
+			border-right: 3px solid #c2ccd4;
+		}
+	}
+}
+
+.col-title{
+	position: relative;
+	height: 46px;
+	line-height: 46px;
+	text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: rgba(0,0,0,0.8);
+	&::after{
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 8px;
+		border-bottom: 1px solid #c2ccd4;
+		border-left: 3px solid #c2ccd4;
+	}
+}
+
+
+.item-wrap{
+	@include flexCenter;
+	@include flexAverage;
+	flex-direction: row;
+}
+
+.item{
+	height: 5px;
+	margin: 1px 2px;
+	background: #59d0ff;
+}
+
+.empty{
+	background: #ededed;
+}
+
+.bottom-tip{
+	margin-top: 5px;
+	text-align: right;
+	opacity: 0.8;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #000000;
+	letter-spacing: 0;
+	line-height: 28px;
+}

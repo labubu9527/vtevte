@@ -1,0 +1,120 @@
+@import '~rootSrc/common/common.scss';
+
+.wrap{
+}
+
+.section1{
+
+}
+
+.stage-wrap{
+	@include flexCenter;
+	position: relative;
+	min-height: 98px;
+	margin-bottom: 12px;
+	background: #FFFFFF;
+	border-radius: 4px;
+	border-radius: 4px;
+	&:nth-last-child(){
+		margin-bottom: 0;
+	}
+	img{
+		width: 50px;
+		height: 50px;
+		margin: 0 25px 0 31px;
+	}
+	.stage-item{
+		flex-grow: 1;
+		padding: 10px 0;
+	}
+	.stage-name{
+		font-family: PingFangSC-Medium;
+		font-size: 16px;
+		color: #333333;
+	}
+	.stage-detail{
+		// height: 40px;
+		line-height: 20px;
+		margin-top: 7px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #595959;
+	}
+	.stage-ope{
+		width: 76px;
+		height: 76px;
+		@include hover;
+		background: url('./icons/edit.png') no-repeat center;
+	}
+}
+
+.control-btn{
+	@include flexCenter;
+	height: 82px;
+	margin: 20px 0;
+	border-radius: 2px;
+	background-color: #fff;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	button{
+		@include hover;
+		height: 32px;
+		line-height: 30px;
+		padding: 0 25px;
+		text-align: center;
+		border-radius: 4px;
+	}
+	.go-search{
+		color: #fff;
+		background-color: #409EFF;
+		border: #409EFF;
+		margin-right: 55px;
+	}
+	.rechoose{
+		color: rgba(0,0,0,0.65);
+		background-color: #fff;
+		border: 1px solid #D9D9D9;
+	}
+}
+
+.heatMap-wrap{
+	padding: 10px 50px 18px;
+	margin: 17px 0 23px;
+	background: #fff;
+}
+
+.atients-table{
+	margin: 16px 0 20px;
+	padding: 5px 13px 0;
+	background: #fff;
+	border-radius: 2px;
+}
+
+.atients-table-head{
+	@include flexCenter;
+	margin: 0 100px 5px;
+	> span{
+		position: relative;
+		height: 46px;
+		line-height: 46px;
+		text-align: center;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: rgba(0,0,0,0.8);
+		&::after{
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 8px;
+			border-bottom: 1px solid #c2ccd4;
+			border-left: 3px solid #c2ccd4;
+		}
+	}
+	> span:nth-last-child(1){
+		&::after{
+			border-right: 3px solid #c2ccd4;
+		}
+	}
+}

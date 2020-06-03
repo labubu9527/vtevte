@@ -1,0 +1,49 @@
+@import '../../common/common.scss';
+
+.wrap{
+	padding:  0 16px;
+	@include flexCenter;
+	i{
+		display: block;
+		width: 66px;
+		height: 1px;
+		margin:  0 7px;
+		background-color:  #EBEBEC;
+		font-style: normal;
+		margin: 0 6px;
+	}
+	.line-active{
+		background-color:  #49A3FF;
+	}
+}
+.item{
+	@include flexCenter;
+	flex-direction: column;
+	width: 90px;
+	height: 90px;
+	border: 1px solid #EBEBEC;
+	border-radius: 50%;
+	img{
+		display: block;
+		width: 24px;
+		height: 24px;
+		object-fit: none;
+	}
+	p{
+		position: relative;
+		top: -8px;
+		margin-top: 15px;
+		font-family: PingFangSC-Regular;
+		font-size: 12px;
+		color: #C0C0C0;
+		text-align: center;
+		line-height: 15px;
+	}
+}
+.item-active{
+	border-color: #49A3FF;
+	p{
+		color: #49A3FF;
+	}
+}
+

@@ -1,0 +1,166 @@
+@import '../../common/common.scss';
+
+.wrap{
+	@include flexCenter;
+	overflow: auto;
+	height: calc(100% - 40px);
+	margin: 20px;
+	background: #FFFFFF;
+	box-shadow: 0 2px 6px 4px rgba(42,63,84,0.04);
+	border-radius: 2px;
+	> div{
+		height: 100%;
+	}
+}
+
+.left{
+	flex-shrink: 0;
+	width: 20%;
+	min-width: 252px;
+	border-right: 1px solid #E4E7ED;
+}
+
+.search-key-light{
+	color: #e1251b;
+}
+
+.right{
+	flex-grow: 1;
+}
+
+.search-bar{
+	display: flex;
+	justify-content: space-between;
+	padding: 28px 30px 0;
+	input{
+		width: 244px;
+		height: 32px;
+		background: #FFFFFF;
+		border: 1px solid #D2D5D8;
+		border-radius: 4px;
+	}
+	button{
+		@include hover;
+		width: 75px;
+		height: 32px;
+		line-height: 32px;
+		background: #1989FA;
+		border-radius: 4px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #FFFFFF;
+		text-align: center;
+	}
+}
+
+.tree-wrap{
+	margin: 22px;
+}
+
+.search-list-wrap{
+	width: 80%;
+	min-width: 732px;
+	border: 1px solid rgba(0,6,15,0.08);
+	margin: 94px auto;
+	span{
+		display: inline-block;
+	}
+}
+
+.head{
+	height: 54px;
+	line-height: 54px;
+	text-align: center;
+	background: #9298A8;
+	font-family: PingFangSC-Semibold;
+	font-size: 14px;
+	color: #FFFFFF;
+	span{
+		border-right: 1px solid #fff;
+		&:nth-last-child(1){
+			border-right: 0;
+		}
+	}
+}
+
+.col1{
+	width: 30%;
+}
+.col2{
+	width: 20%;
+}
+.col3{
+	width: 20%;
+}
+.col4{
+	width: 30%;
+}
+
+.row{
+	height: 54px;
+	line-height: 54px;
+	text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #333333;
+	background-color: #fff;
+	&:nth-child(2n){
+		background-color: rgba(146,152,168, .1);
+	}
+	> span{
+		border-top: 1px solid rgba(0,6,15,0.08);
+		border-right: 1px solid rgba(0,6,15,0.08);
+		&:nth-last-child(1){
+			border-right: 0;
+		}
+	}
+}
+
+.outer{
+	width: 180px;
+	height: 23px;
+	padding: 3px;
+	line-height: 21px;
+	text-align: left;
+	background: #FFFFFF;
+	border: 1px solid #33CC00;
+	border-radius: 13px;
+}
+
+.inner{
+	height: 15px;
+	line-height: 15px;
+	border-radius: 13px;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #FFFFFF;
+	background-color: #33CC00;
+	text-align: center;
+	vertical-align: top;
+}
+
+.yellow{
+	.outer{
+		border-color: rgba(255,204,51,1);
+	}
+	.inner{
+		background-color: rgba(255,204,51,1);
+	}
+}
+
+.red{
+	.outer{
+		border-color: #ff0000;
+	}
+	.inner{
+		background-color: #ff0000;
+	}
+}
+
+.list-tip{
+	@include flexCenter;
+	height: 200px;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #999999;
+}

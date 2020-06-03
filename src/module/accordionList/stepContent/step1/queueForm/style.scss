@@ -1,0 +1,61 @@
+@import '~rootSrc/common/common.scss';
+
+.wrap{
+	padding: 9px 14px;
+}
+
+.btn-area{
+	margin: 40px 0 8px;
+	text-align: center;
+	button + button{
+		margin-left: 50px;	
+	}
+}
+
+.add-btn{
+	@include flexCenter;
+	i{
+		position: relative;
+		top: -2px;
+		font-size: 24px;
+		margin-right: 10px;
+		font-style: normal;
+	}
+	line-height: normal;
+	padding-top: 0;
+}
+
+.line{
+	@include flexCenter;
+	margin: 20px 0;
+	i{
+		@include hover;
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		background: url('./icons/del.png') no-repeat center;
+	}
+}
+
+.i1{
+	flex-grow: 0;
+	flex-shrink: 0;
+	width: 206px;
+	height: 32px;
+}
+
+.i2{
+	flex-grow: 0;
+	flex-shrink: 0;
+	width: 90px;
+	height: 32px;
+	margin-left: 10px;
+}
+
+.i3{
+	flex-grow: 0;
+	flex-shrink: 0;
+	width: 129px;
+	height: 32px;
+	margin-left: 10px;
+}

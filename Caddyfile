@@ -1,0 +1,8 @@
+http://xxx.rxthinking.com/static/ {
+    root ./build/static/
+}
+
+http://xxx.rxthinking.com/ {
+    root ./build/
+}
+

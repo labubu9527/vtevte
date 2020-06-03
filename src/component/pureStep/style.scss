@@ -1,0 +1,48 @@
+@import '../../common/common.scss';
+
+.wrap{
+	@include flexCenter;
+	align-items: flex-start;
+}
+.default-item{
+	@include flexCenter;
+	flex-direction: column;
+	.box{
+		@include flexCenter;
+		width: 39px;
+		height: 39px;
+		border-radius: 50%;
+		font-family: PingFangSC-Regular;
+		font-size: 18px;
+		color: #FFFFFF;
+		background: #D2D5D8;
+	}
+	.name{
+		@include flexCenter;
+		height: 16px;
+		margin-top: 11px;
+		font-family: PingFangSC-Semibold;
+		font-size: 12px;
+		color: #D2D5D8;
+	}
+}
+.active-item{
+	.box{
+		background-color: #399CFF;
+	}
+	.name{
+		color: #399CFF;
+	}
+}
+
+.default-separate{
+	width: 112px;
+	height: 19px;
+	margin: 0 20px;
+	border-bottom: 1px solid #D2D5D8;
+}
+
+.active-separate{
+	border-color: #399CFF;
+}
+

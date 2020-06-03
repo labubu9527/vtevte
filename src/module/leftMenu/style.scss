@@ -1,0 +1,77 @@
+@import '../../common/common.scss';
+
+.menu-wrap{
+	display: flex;
+	flex-direction: column;
+	user-select: none;
+}
+
+.menu-first.open{
+	.first-title{
+		opacity: 1;
+	}
+	.first-arrow{
+		background-image: url('./icons/up.png');
+	}
+	.sub-list{
+		display: block;
+	}
+	.first-name{
+		font-family: PingFangSC-Medium;
+	}
+}
+
+.first-title{
+	@include flexYCenter;
+	height: 54px;
+	margin: 0 3px 0 26px;
+	opacity: .7;
+	cursor: pointer;
+}
+
+.first-icon{
+	margin-right: 10px;
+}
+
+.first-name{
+	flex-grow: 1;
+	text-align: left;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+}
+
+.first-arrow{
+	width: 54px;
+	height: 54px;
+	background: url('./icons/down.png') no-repeat center;
+}
+
+.sub-list{
+	display: none;
+	box-shadow: inset 0 2px 8px 0 rgba(0,0,0,0.45);
+}
+
+.menu-second{
+	position: relative;
+	font-family: PingFangSC-Light;
+	font-size: 14px;
+	color: #FFFFFF;
+	line-height: 40px;
+	padding-left: 50px;
+	background: #3C3F4E;
+	cursor: pointer;
+}
+
+.active{
+	color: #409EFF;
+	&::before{
+		content: '';
+		position: absolute;
+		left: 38px;
+		top: 50%;
+		width: 3px;
+		height: 16px;
+		margin-top: -8px;
+		background: #409EFF;
+	}
+}

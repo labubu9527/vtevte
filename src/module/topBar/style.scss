@@ -1,0 +1,97 @@
+@import '../../common/common.scss';
+
+.wrap{
+	@include flexYCenter;
+	justify-content: flex-end;
+	height: 64px;
+	background-color: #fff;
+	border-bottom: 1px solid #ececed;
+}
+
+.user{
+	@include flexCenter;
+	margin-right: 22px;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: rgba(0,0,0,0.65);
+	img{
+		width: 30px;
+		height: 30px;
+		border-radius: 50px;
+		margin-right: 12px;
+	}
+	i{
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		margin-left: 6px;
+		background: url('./icons/down.png') no-repeat center;
+	}
+}
+
+.dropdown-menu{
+	padding: 0 6px;
+	a{
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+	}
+	a:hover{
+		color: #2596FE;
+	}
+}
+
+.msg{
+	position: relative;
+	width: 42px;
+	height: 42px;
+	@include hover;
+	background: url('./icons/msg.png') no-repeat center;
+	span{
+		@include flexCenter;
+		position: absolute;
+		right: 6px;
+		top: 6px;
+		width: 18px;
+		height: 18px;
+		transform: scale(.6);
+		border-radius: 50%;
+		font-family: PingFangSC-Regular;
+		font-size: 12px;
+		background-color: #ff434d;
+		color: #fff;
+	}
+}
+
+.logout{
+	@include flexCenter;
+	width: 66px;
+	height: 100%;
+	margin: 0 14px;
+	@include hover;
+	&::before{
+		content:'';
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		margin-right: 5px;
+		background: url('./icons/logout.png') no-repeat center;
+	}
+}
+
+.sub-list{
+	display: none;
+	box-shadow: inset 0 2px 8px 0 rgba(0,0,0,0.45);
+}
+
+.menu-second{
+	font-family: PingFangSC-Light;
+	font-size: 14px;
+	color: #FFFFFF;
+	line-height: 40px;
+	text-align: center;
+	background: #000C17;
+	&:hover{
+		@include hover;
+		background-color: #409EFF;
+	}
+}

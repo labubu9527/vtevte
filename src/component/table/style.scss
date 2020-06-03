@@ -1,0 +1,8 @@
+@import '~rootSrc/common/common.scss';
+
+.ope-link{
+	@include hover;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #009BEC;
+}

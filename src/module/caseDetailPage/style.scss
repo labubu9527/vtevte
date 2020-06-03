@@ -1,0 +1,12 @@
+@import '../../common/common.scss';
+
+.wrap{
+	border-top: 1px solid #edeef0;
+	padding: 19px 24px 0;
+}
+
+.step-wrap{
+	@include flexCenter;
+	height: 112px;
+	background-color: #fff;
+}

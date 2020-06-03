@@ -1,0 +1,63 @@
+@import '~rootSrc/common/common.scss';
+
+.wrap{
+	@include flexCenter;
+	flex-direction: column;
+	overflow: auto;
+	position: relative;
+	height: calc(100% - 40px);
+	margin: 20px;
+	background: #FFFFFF;
+	box-shadow: 0 2px 6px 4px rgba(42,63,84,0.04);
+	border-radius: 2px;
+}
+
+.form{
+	width: 400px;
+	input{
+		border-radius: 4px;
+	}
+	.form-row{
+		margin-bottom: 34px;
+		> div > div:nth-child(2){
+			position: absolute;
+			top: 35px;
+		}
+	}
+}
+
+.form-btn-wrap{
+	margin-top: 60px;
+	text-align: center;
+	> div{
+		max-width: 100%;
+	}
+}
+
+.form-btn{
+	border-radius: 4px;
+}
+
+.tip{
+	margin-top: -30%;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #333333;
+	> div{
+		@include flexYCenter;
+		margin-bottom: 15px;
+	}
+	i{
+		width: 17px;
+		height: 17px;
+		display: inline-block;
+		margin-right: 14px;
+		background: url('./icons/ok.png') no-repeat center;
+	}
+}
+.go-btn{
+	width: 123px;
+	height: 32px;
+	margin-top: 40px;
+	border-radius: 4px;
+}

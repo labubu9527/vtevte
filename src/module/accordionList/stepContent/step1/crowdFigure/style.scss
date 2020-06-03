@@ -1,0 +1,80 @@
+@import '~rootSrc/common/common.scss';
+
+.wrap{
+	@include flexCenter;
+	justify-content: space-around;
+}
+
+.person-wrap{
+	width: 260px;
+	height: 132px;
+	margin: 0 auto;
+	line-height: 0;
+	margin-bottom: -5px;
+	i{
+		display: inline-block;
+		width: 13px;
+		height: 28px;
+		margin-bottom: 5px;
+		background: no-repeat center/100% 100%;
+	}
+}
+
+.arrow{
+	flex-shrink: 0;
+	width: 24px;
+	height: 9px;
+	margin: 0 10px;
+	background: url('./icons/arrow.png') no-repeat center/100% 100%;
+}
+
+.blue{
+	.number{
+		color: #2F90EE;
+	}
+	i{
+		background-image: url('./icons/bluePerson.png');
+	}
+}
+
+.red{
+	.number{
+		color: #EE2F2F;
+	} 
+	i{
+		background-image: url('./icons/redPerson.png');
+	}
+}
+
+.green{
+	.number{
+		color: #15C25A;
+	} 
+	i{
+		background-image: url('./icons/greenPerson.png');
+	}
+}
+
+.total{
+	height: 35px;
+	margin-top: 20px;
+	text-align: center;
+}
+.number{
+	line-height: 40px;
+	font-family: PingFangSC-Medium;
+	font-size: 28px;
+}
+.unit{
+	margin-left: 5px;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #333333;
+}
+.name{
+	text-align: center;
+	line-height: 20px;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #595959;
+}

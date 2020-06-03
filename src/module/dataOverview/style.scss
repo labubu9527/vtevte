@@ -1,0 +1,68 @@
+@import '../../common/common.scss';
+
+.wrap{
+	
+	section{
+		@include flexCenter;
+		padding: 0 35px 35px;
+		margin: 20px;
+		background: #FFFFFF;
+		box-shadow: 0 2px 6px 4px rgba(42,63,84,0.04);
+		border-radius: 2px;
+	}
+
+}
+
+.left{
+	width: 440px;
+	// height: 290px;
+	margin-right: 54px;
+}
+
+.right{
+	width: 636px;
+	// height: 290px;
+}
+
+.full{
+	width: 1130px;
+	// height: 398px;
+}
+
+.chart-wrap{
+	border: 1px solid #E4E7ED;
+	border-radius: 2px;
+}
+
+.title{
+	@include flexYCenter;
+	height: 70px;
+	font-family: PingFangSC-Medium;
+	font-size: 18px;
+	color: #222222;
+	text-align: left;
+	line-height: 22px;
+	&::before{
+		content: '';
+		display: inline-block;
+		width: 25px;
+		height: 25px;
+		margin-right: 10px;
+		background: no-repeat center;
+	}
+}
+.tangniaobing::before{
+	background-image: url('./icons/tangniaobing.png');
+}
+.nianling::before{
+	background-image: url('./icons/nianling.png');
+}
+.BMI::before{
+	background-image: url('./icons/BMI.png');
+}
+.xueya::before{
+	background-image: url('./icons/xueya.png');
+}
+.huaiyun::before{
+	background-image: url('./icons/huaiyun.png');
+}
