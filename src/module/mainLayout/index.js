@@ -3,7 +3,7 @@
  * @Desc: 主布局
  * @Date: 2020-04-19 17:09:33
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-05-24 15:47:32
+ * @LastEditTime: 2020-06-04 00:11:56
  */
 import React from 'react';
 import style from './style.scss?module';
@@ -15,7 +15,7 @@ const MainLayout = () => {
 	return (
 		<div className={style['main-Layout']}>
 			<div className={style['layout-left']}>
-				<div className={style['logo-part']}>临床路径挖掘引擎</div>
+				<div className={style['logo-part']}>临床路径挖掘系统</div>
 				<LeftMenu/>
 			</div>
 			<div className={style['layout-right']}>
