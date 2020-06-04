@@ -4,14 +4,20 @@
 	position: relative;
 }
 
-.download{
+.btn-area{
 	@include flexCenter;
-	@include hover;
+	flex-direction: row;
 	position: absolute;
 	top: -10px;
 	right: 0;
-	width: 116px;
+}
+
+.download{
+	@include flexCenter;
+	@include hover;
+	width: 110px;
 	height: 32px;
+	margin-right: 20px;
 	line-height: 32px;
 	background: #1989FA;
 	border-radius: 4px;
@@ -22,10 +28,33 @@
 	&::before{
 		content: '';
 		display: inline-block;
+		width: 18px;
+		height: 18px;
+		margin-right: 8px;
+		background: url('./icons/xiazai.png') no-repeat center;
+	}
+}
+
+.full{
+	@include flexCenter;
+	@include hover;
+	width: 110px;
+	height: 32px;
+	line-height: 30px;
+	background: #fff;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: rgba(0,0,0,.65);
+	text-align: center;
+	&::before{
+		content: '';
+		display: inline-block;
 		width: 15px;
 		height: 15px;
 		margin-right: 8px;
-		background: url('./icons/xiazai.png') no-repeat center;
+		background: url('./icons/full.png') no-repeat center;
 	}
 }
 

@@ -3,7 +3,7 @@
  * @Desc: 左侧指标仓库树
  * @Date: 2020-05-17 14:42:08
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-05-17 20:08:23
+ * @LastEditTime: 2020-06-05 00:08:28
  */
 import React, {useState} from 'react';
 import { Tree, Input } from 'antd';
@@ -13,9 +13,9 @@ const { Search } = Input;
 
 
 const mockData = [
-	{name_cn: '调查指标', name_en: '', value_cn: ['年龄', '糖尿病遗传系数', '怀孕次数'], value_en: ['age', 'diabetes_pedigree_function', 'pregnancies']},
-	{name_cn: '无创测量指标', name_en: '', value_cn: ['体重指数', '舒张压', '肱三头肌皮下脂肪厚度'], value_en: ['bmi', 'blood_pressure', 'skin_thickness']},
-	{name_cn: '有创检测指标', name_en: '', value_cn: ['餐后两小时血糖', '餐后两小时血清胰岛素'], value_en: ['glucose', 'insulin']},
+	{name_cn: '调查指标', name_en: '', value_cn: ['年龄(岁)', '糖尿病遗传系数', '怀孕次数'], value_en: ['age', 'diabetes_pedigree_function', 'pregnancies']},
+	{name_cn: '无创测量指标', name_en: '', value_cn: ['体重指数', '舒张压(mmHg)', '肱三头肌皮下脂肪厚度(mm)'], value_en: ['bmi', 'blood_pressure', 'skin_thickness']},
+	{name_cn: '有创检测指标', name_en: '', value_cn: ['餐后两小时血糖(mg/dl)', '餐后两小时血清胰岛素(pmol/L)'], value_en: ['glucose', 'insulin']},
 	{name_cn: '结局', name_en: '', value_cn: ['是否患有糖尿病'], value_en: ['outcome']}
 ];
 
@@ -51,6 +51,9 @@ const SearchTree = ({setActiveIndicators, treeOriginData = mockData}) => {
 	};
 
 	const onSelect = (selectedKeys) => {
+		if(selectedKeys.length === 0){
+			return;
+		}
 		if(selectedKeys[0].includes('treeNode')){
 			// 点击的是第一层，去获取这层所包含的所有子key
 			const level1Node = treeRenderData.find(item => item.key === selectedKeys[0]);

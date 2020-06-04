@@ -3,7 +3,7 @@
  * @Desc: 文献查询
  * @Date: 2020-05-17 17:31:35
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-03 10:37:34
+ * @LastEditTime: 2020-06-04 23:51:32
  */ 
 
 import React, {useState, useEffect, useRef} from 'react';
@@ -15,14 +15,15 @@ import ViewForm from './viewForm';
 import style from './style.scss?module';
 
 const arrLink = [
-	{img: require('./icons/SciELO.png'), name: 'SciELO', link: 'https://www.scielo.br/'}, 
-	{img: require('./icons/Springer.png'), name: 'Springer', link: 'https://link.springer.com/'}, 
-	{img: require('./icons/ScienceDirect.png'), name: 'ScienceDirect', link: 'https://www.sciencedirect.com/'}, 
-	{img: require('./icons/WileyOnlineLibrary.png'), name: 'Wiley Online Library ', link: 'https://onlinelibrary.wiley.com/'}, 
-	{img: require('./icons/BMC.png'), name: 'BMC', link: 'https://www.engineeringvillage.com/home.url'}, 
-	{img: require('./icons/SAGEPublish.png'), name: 'SAGE Publish', link: 'https://journals.sagepub.com/'}, 
+	{img: require('./icons/GoogleScholar.png'), name: 'Google Scholar', link: 'https://scholar.google.com/'}, 
+	{img: require('./icons/PubMed.png'), name: 'PubMed', link: 'https://pubmed.ncbi.nlm.nih.gov/'}, 
 	{img: require('./icons/WebofScience.png'), name: 'Web of Science', link: 'http://login.webofknowledge.com/error/Error?Error=IPError&PathInfo=%2F&RouterURL=http%3A%2F%2Fwww.webofknowledge.com%2F&Domain=.webofknowledge.com&Src=IP&Alias=WOK5'}, 
-	{img: require('./icons/PubMed.png'), name: 'PubMed', link: 'https://pubmed.ncbi.nlm.nih.gov/'}
+	{img: require('./icons/SpringerLink.png'), name: 'Springer Link', link: 'https://link.springer.com/'}, 
+	{img: require('./icons/WileyOnlineLibrary.png'), name: 'Wiley Online Library', link: 'https://onlinelibrary.wiley.com/'}, 
+	{img: require('./icons/ScienceDirect.png'), name: 'ScienceDirect', link: 'https://www.sciencedirect.com/'}, 
+	{img: require('./icons/EngineeringVillage.png'), name: 'Engineering Village', link: 'https://www.engineeringvillage.com/home.url'}, 
+	{img: require('./icons/SAGE.png'), name: 'SAGE', link: 'https://journals.sagepub.com/'}, 
+	{img: require('./icons/SciELO.png'), name: 'SciELO', link: 'https://www.scielo.br/'}, 
 ];
 
 // id: str, 论文编号
@@ -31,7 +32,7 @@ const arrLink = [
 // - uid: str, 上传者 uid
 // - upload_datetime: str, 上传时间
 
-const mockData = [{
+/* const mockData = [{
 	id: '10001',
 	name: 'XXXXXX研究',
 	tags: 'XXXXXX标签',
@@ -91,9 +92,9 @@ const mockData = [{
 	name: 'XXXXXX研究',
 	tags: 'XXXXXX标签',
 	upload_datetime: '2020-05-17'
-},];
+},]; */
 
-const LiteratureQuery = ({tableDataSource = mockData}) => {
+const LiteratureQuery = () => {
 
 	const [addVisible, setAddVisible] = useState(false);
 	const [editVisible, setEditVisible] = useState(false);
@@ -107,8 +108,10 @@ const LiteratureQuery = ({tableDataSource = mockData}) => {
 	// 查询论文列表数据
 	useEffect(() => {
 		sendGet('/data_overview/literatures', queryParams).then(({data, total}) => {
+			const {page, per_page} = queryParams;
 			setUseTableDataTotal(total);
-			setUseTableDataSource(data);
+			// 增加行表格行id，纯粹用于展示
+			setUseTableDataSource(data.map((item, index) => ({rowNumber: (page - 1) * per_page + index + 1, ...item})));
 		});
 	}, [queryParams]);
 
@@ -152,7 +155,8 @@ const LiteratureQuery = ({tableDataSource = mockData}) => {
 	const tableColumns = [
 		{
 			title: '论文编号',
-			dataIndex: 'id',
+			// dataIndex: 'id',
+			dataIndex: 'rowNumber',
 		},
 		{
 			title: '论文名称',
@@ -242,7 +246,7 @@ const LiteratureQuery = ({tableDataSource = mockData}) => {
 				visible={true}
 				cancelText="取消"
 				okText="确定"
-				width={737}
+				width={800}
 				footer={null}
 				maskClosable={false}
 				onCancel={closeModal}

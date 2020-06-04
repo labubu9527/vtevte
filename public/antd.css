@@ -2824,6 +2824,9 @@ html {
   font-size: 12px;
   line-height: 1;
   text-align: center;
+
+  /* hack */
+  pointer-events: none;
 }
 .ant-select-arrow > * {
   line-height: 1;

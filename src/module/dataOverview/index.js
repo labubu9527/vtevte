@@ -3,7 +3,7 @@
  * @Desc: 数据概览
  * @Date: 2020-05-16 11:16:43
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-05-28 16:38:22
+ * @LastEditTime: 2020-06-04 23:45:31
  */ 
 
 import React, {useState, useEffect} from 'react';
@@ -167,15 +167,14 @@ const DataOverview = () => {
 			{
 				name: '',
 				type: 'pie',
-				top: 20,
+				top: 60,
 				// radius: ['34.5%', '65.5%'],
 				radius: ['50', '95'],
 				hoverAnimation: false,
 				label: {
 					show: true,
-					position: 'inside',
 					formatter: '{d}%',
-					color: '#fff',
+					color: '#3F3F3F',
 					fontFamily: 'PingFangSC-Regular',
 					fontSize: 13
 				},
@@ -186,7 +185,7 @@ const DataOverview = () => {
 					}
 				},
 				labelLine: {
-					show: false
+					show: true,
 				},
 				// data: [
 				// 	{value: pimaData.filter(({bmi}) => 30 <= bmi).length, name: '肥胖'},

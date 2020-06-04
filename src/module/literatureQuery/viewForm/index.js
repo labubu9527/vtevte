@@ -3,9 +3,9 @@
  * @Desc: 查看论文弹框使用的表单
  * @Date: 2020-05-17 22:53:31
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-05-30 15:19:50
+ * @LastEditTime: 2020-06-04 23:22:03
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { sendGet } from 'rootSrc/common/request';
 import style from './style.scss?module';
 
@@ -13,11 +13,24 @@ import style from './style.scss?module';
 
 // PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.js';
 
+//打开全屏方法
+function openFullscreen(element) {
+	if (element.requestFullscreen) {
+		element.requestFullscreen();
+	} else if (element.mozRequestFullScreen) {
+		element.mozRequestFullScreen();
+	} else if (element.msRequestFullscreen) {
+		element.msRequestFullscreen();
+	} else if (element.webkitRequestFullscreen) {
+		element.webkitRequestFullScreen();
+	}
+}
 
 const ViewForm = ({modalCloseFun, formData}) => {
-	console.log('formData:', formData);
+	// console.log('formData:', formData);
 
 	const [pdfAddress, setPdfAddress] = useState('');
+	const wrapEl = useRef(null);
 
 	// 查询论文列表数据
 	useEffect(() => {
@@ -25,16 +38,17 @@ const ViewForm = ({modalCloseFun, formData}) => {
 		sendGet(`/data_overview/literatures/${id}`, { id }, {isBlob: true}).then((data) => {
 
 			const binaryData = [];
-
 			binaryData.push(data);
-			
-			// const blobUrl = window.URL.createObjectURL(new Blob(binaryData, {type:"application/zip"}));
 			const blobUrl = window.URL.createObjectURL(new Blob(binaryData, {type:"application/pdf;chartset=utf-8"}));
-
-
 			setPdfAddress(blobUrl);
+
+			// openFullscreen(wrapEl.current);
 		});
 	}, []);
+
+	const fullscreen = () => {
+		openFullscreen(wrapEl.current);
+	}
 
 	/* setTimeout(() => {
 		var url = './demo.pdf';
@@ -64,10 +78,13 @@ const ViewForm = ({modalCloseFun, formData}) => {
 
 	return (
 		<div className={style["wrap"]}>
-			<a className={style["download"]} href={pdfAddress} download={name + '.pdf'} >下载论文</a>
+			<div className={style["btn-area"]}>
+				<a className={style["download"]} href={pdfAddress} download={name + '.pdf'} >下载论文</a>
+				<button onClick={() => fullscreen()} className={style["full"]} >全屏查看</button>
+			</div>
 			<div className={style["title"]}>{name}</div>
 			<div className={style["content"]}>
-				<iframe width="100%" height="100%" src={pdfAddress} frameBorder="0"></iframe>
+				<iframe ref={wrapEl} width="100%" height="100%" src={pdfAddress} frameBorder="0"></iframe>
 				{/* <object data={pdfAddress} type="application/pdf" width="100%" height="100%"></object> */}
 			</div>
 		</div>
