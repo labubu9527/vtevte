@@ -3,7 +3,7 @@
  * @Desc: 数据概览
  * @Date: 2020-05-16 11:16:43
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-04 23:45:31
+ * @LastEditTime: 2020-06-05 22:51:25
  */ 
 
 import React, {useState, useEffect} from 'react';
@@ -53,17 +53,16 @@ const DataOverview = () => {
 			{
 				name: '',
 				type: 'pie',
-				top: 20,
+				top: 60,
 				// radius: ['34.5%', '65.5%'],
 				radius: ['50', '95'],
 				hoverAnimation: false,
 				label: {
 					show: true,
-					position: 'inside',
 					formatter: '{d}%',
-					color: '#fff',
+					color: '#3F3F3F',
 					fontFamily: 'PingFangSC-Regular',
-					fontSize: 14
+					fontSize: 13
 				},
 				emphasis: {
 					label: {
@@ -72,7 +71,7 @@ const DataOverview = () => {
 					}
 				},
 				labelLine: {
-					show: false
+					show: true,
 				},
 				/* data: [
 					{value: pimaData.filter(({outcome}) => !outcome).length, name: '未患糖尿病'},

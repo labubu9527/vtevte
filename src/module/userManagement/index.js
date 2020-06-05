@@ -3,12 +3,13 @@
  * @Desc: 用户管理
  * @Date: 2020-05-24 10:32:17
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-03 23:28:15
+ * @LastEditTime: 2020-06-05 22:55:27
  */
 
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { Table, Input, Select, Form, Switch, message} from 'antd';
+import { Table, Input, Select, Form, Switch, message } from 'antd';
 import { sendGet, sendPost, sendPatch } from 'rootSrc/common/request';
 import style from './style.scss?module';
 
@@ -16,10 +17,15 @@ import style from './style.scss?module';
 
 const { Option } = Select;
 
-const roleNameToDescMap = {
-	'管理员': 'a.可查看并编辑所有系统中存在的项目；b. 可创建、编辑、删除用户账号，修改用户密码',
-	'普通用户': '仅可查看、编辑自己创建的项目'
-}
+// const roleNameToDescJsxMap = {
+// 	'管理员': 'a.可查看并编辑所有系统中存在的项目；\r\nb. 可创建、编辑、删除用户账号，修改用户密码；c.可查看数据概览等数据',
+// 	'普通用户': 'a.可查看并编辑自己创建的项目；\r\nb.可查看数据概览等数据'
+// };
+
+const roleNameToDescJsxMap = {
+	'管理员': <><p>a.可查看并编辑所有系统中存在的项目；</p><p>b. 可创建、编辑、删除用户账号，修改用户密码；c.可查看数据概览等数据</p></>,
+	'普通用户': <><p>a.可查看并编辑自己创建的项目；</p><p>b.可查看数据概览等数据</p></>
+};
 
 const EditableCell = ({
 	editing,
@@ -33,7 +39,8 @@ const EditableCell = ({
 }) => {
 	const inputNode = inputType === 'select' ? (<Select defaultValue={record.role_name} style={{ width: 100 }} onChange={(value) => {
 		const roleDescriptionDom = document.querySelector('.ant-select-focused').closest('td').nextSibling;
-		roleDescriptionDom.innerText = roleNameToDescMap[value];
+		ReactDOM.render(roleNameToDescJsxMap[value], roleDescriptionDom);
+		// roleDescriptionDom.innerText = roleNameToDescJsxMap[value];
 	}} >
 		<Option value="管理员">管理员</Option>
 		<Option value="普通用户">普通用户</Option>
@@ -48,7 +55,7 @@ const EditableCell = ({
 					}}
 					rules={[
 						{
-							required: dataIndex === 'notes'? false: true,
+							required: dataIndex === 'notes' ? false : true,
 							message: `请输入${title}`,
 						},
 					]}
@@ -65,7 +72,7 @@ const EditableCell = ({
 const UserManagement = ({ tableDataSource = [] }) => {
 
 
-	const [isAddMode, setIsAddMode] = useState(false);	// 是否是新增模式
+	const [isAddMode, setIsAddMode] = useState(false);  // 是否是新增模式
 
 	// 补全表格各种操作依赖的key字段
 	// const initTableDataSource = tableDataSource.map(item => { return { id: item.id, ...item } });
@@ -79,17 +86,20 @@ const UserManagement = ({ tableDataSource = [] }) => {
 
 	// 加载用户列表数据
 	useEffect(() => {
-		sendGet('/users', queryParams).then(({data, total}) => {
+		sendGet('/users', queryParams).then(({ data, total }) => {
+			const { page, per_page } = queryParams;
 			setUseTableDataTotal(total);
-			setUseTableDataSource(data);
+			// 增加行表格行id，纯粹用于展示
+			setUseTableDataSource(data.map((item, index) => (syncRoleDesc({ rowNumber: (page - 1) * per_page + index + 1, ...item }))));
 		});
 	}, [queryParams]);
 
 	const tableColumns = [
 		{
 			title: '编号',
-			dataIndex: 'id',
-			width: 120,
+			// dataIndex: 'id',
+			dataIndex: 'rowNumber',
+			width: 80,
 		},
 		{
 			title: '用户名',
@@ -141,25 +151,25 @@ const UserManagement = ({ tableDataSource = [] }) => {
 						<button className={style["ope-btn"]} onClick={() => cancel()} >取消</button>
 					</>
 				) : (
-					<>
-						<button disabled={editingKey !== ''} className={style["ope-btn"]} onClick={() => editRow(record)} >编辑</button>
-						<Switch disabled={editingKey !== ''} className={style["ope-switch"]} checked={record.status === 1} onChange={(checked) => switchChange(record, checked)} />
-					</>
-				);
+						<>
+							<button disabled={editingKey !== ''} className={style["ope-btn"]} onClick={() => editRow(record)} >编辑</button>
+							<Switch disabled={editingKey !== ''} className={style["ope-switch"]} checked={record.status === 1} onChange={(checked) => switchChange(record, checked)} />
+						</>
+					);
 
 				return <div className={style["ope-wrap"]}>{innerContent}</div>;
 			},
 		}
 	];
 
-	if(isAddMode){
-		const column = tableColumns.find(({dataIndex}) => dataIndex === 'account');
+	if (isAddMode) {
+		const column = tableColumns.find(({ dataIndex }) => dataIndex === 'account');
 		column.editable = true;
 	}
 
 	const handleTableChange = (pagination, filters, sorter) => {
-		const {current: page, pageSize: per_page} = pagination;
-		const newParams = Object.assign({}, queryParams, {page, per_page});
+		const { current: page, pageSize: per_page } = pagination;
+		const newParams = Object.assign({}, queryParams, { page, per_page });
 		setQueryParams(newParams);
 	}
 
@@ -168,15 +178,16 @@ const UserManagement = ({ tableDataSource = [] }) => {
 	};
 
 	const addRow = () => {
+		const defaultRoleName = '普通用户'; // 默认普通用户
 		const newData = {
 			id: '',
-			role_name: '普通用户',	// 默认普通用户
-			role_description: '仅可查看、编辑自己创建的项目',
+			role_name: defaultRoleName,
+			role_description: roleNameToDescJsxMap[defaultRoleName],
 		};
 
 		// 重置表单输入项
 		form.setFieldsValue({
-			name: '',	// 新建用户默认启用
+			name: '',   // 新建用户默认启用
 			account: '',
 			notes: '',
 			...newData
@@ -184,7 +195,7 @@ const UserManagement = ({ tableDataSource = [] }) => {
 
 		setEditingKey('');
 		setIsAddMode(true);
-		setAddBeforeTableDataSource(useTableDataSource);	// 记录住进行添加操作之前的表格数据
+		setAddBeforeTableDataSource(useTableDataSource);    // 记录住进行添加操作之前的表格数据
 		setUseTableDataSource([newData]);
 	};
 
@@ -192,50 +203,52 @@ const UserManagement = ({ tableDataSource = [] }) => {
 		form.setFieldsValue({
 			...record,
 		});
-		setAddBeforeTableDataSource(useTableDataSource);	// 记录住进行编辑操作之前的表格数据
+		setAddBeforeTableDataSource(useTableDataSource);    // 记录住进行编辑操作之前的表格数据
 		setEditingKey(record.id);
 	};
 
 	const cancel = () => {
-		const editItem = addBeforeTableDataSource.find(({id}) => id === editingKey);
+		const editItem = addBeforeTableDataSource.find(({ id }) => id === editingKey);
 		setEditingKey('');
 		setIsAddMode(false);
-		if(editItem){
+		if (editItem) {
 			// 由于角色描述不是编辑表单元素，所以单独通过操作dom来重置回原来的值
-			document.querySelector('.ant-select-single').closest('td').nextSibling.innerText = editItem.role_description;
+			// document.querySelector('.ant-select-single').closest('td').nextSibling.innerText = editItem.role_description;
+			const roleDescriptionDom = document.querySelector('.ant-select-single').closest('td').nextSibling;
+			ReactDOM.render(roleNameToDescJsxMap[editItem.role_name], roleDescriptionDom);
 		}
-		setUseTableDataSource(addBeforeTableDataSource);	// 恢复到进行添加操作之前的数据
+		setUseTableDataSource(addBeforeTableDataSource);    // 恢复到进行添加操作之前的数据
 	};
 
-	/**
-	 * 启用、停用用户
-	 * @param {*} id 	用户id
-	 * @param {*} checked 	是否启用
-	 */
-	const switchChange = ({id}, checked) => {
+    /**
+     * 启用、停用用户
+     * @param {*} id    用户id
+     * @param {*} checked   是否启用
+     */
+	const switchChange = ({ id }, checked) => {
 		const newData = [...useTableDataSource];
 		const index = newData.findIndex(item => id === item.id);
-		const editItem = {...useTableDataSource[index]};
-		editItem.status = checked? 1: 0;
+		const editItem = { ...useTableDataSource[index] };
+		editItem.status = checked ? 1 : 0;
 		newData.splice(index, 1, editItem);
 
-		const {id: userId, name, status} = editItem;
+		const { id: userId, name, status } = editItem;
 
 		// 调用接口更新用户状态
 		sendPost(`/users/${userId}/status`, { id: userId, status }).then((data) => {
-			message.success(status === 0? `已停用 ${name} 账户`: `已启用 ${name} 账户`);
+			message.success(status === 0 ? `已停用 ${name} 账户` : `已启用 ${name} 账户`);
 			setUseTableDataSource(newData);
 		});
 	}
 
-	/**
-	 * 同步角色说明
-	 * 管理员 => a.可查看并编辑所有系统中存在的项目；b. 可创建、编辑、删除用户账号，修改用户密码
-	 * 普通用户 => 仅可查看、编辑自己创建的项目
-	 */
+    /**
+     * 同步角色说明
+     * 管理员 => a.可查看并编辑所有系统中存在的项目；b. 可创建、编辑、删除用户账号，修改用户密码
+     * 普通用户 => 仅可查看、编辑自己创建的项目
+     */
 	const syncRoleDesc = (rowData) => {
-		const {role_name} = rowData;
-		rowData.role_description = roleNameToDescMap[role_name];
+		const { role_name } = rowData;
+		rowData.role_description = roleNameToDescJsxMap[role_name];
 		return rowData;
 	}
 
@@ -248,23 +261,23 @@ const UserManagement = ({ tableDataSource = [] }) => {
 			if (index > -1) {
 				// 编辑记录
 				console.log('编辑记录~');
-				
+
 				const item = newData[index];
 				const saveItem = syncRoleDesc({ ...item, ...row });
-				const {id, name, role_name, notes} = saveItem;
+				const { id, name, role_name, notes } = saveItem;
 
 				// 调用编辑接口保存
-				sendPatch(`/users/${id}`, {id, name, role_name, notes}).then((data) => {
+				sendPatch(`/users/${id}`, { id, name, role_name, notes }).then((data) => {
 					message.success('修改成功');
 					// const newList = [...addBeforeTableDataSource];
 					// newList.unshift(data);
 					// setIsAddMode(false);
 					// setUseTableDataSource(newList);
 
-					// newData.splice(index, 1, data);	// 使用接口返回的新数据目前有点问题，改为直接使用本地编辑后的数据
+					// newData.splice(index, 1, data);  // 使用接口返回的新数据目前有点问题，改为直接使用本地编辑后的数据
 					newData.splice(index, 1, saveItem);
 					setUseTableDataSource(newData);
-					setAddBeforeTableDataSource(newData);	// 编辑保存完后要同步到addBeforeTableDataSource中
+					setAddBeforeTableDataSource(newData);   // 编辑保存完后要同步到addBeforeTableDataSource中
 					setEditingKey('');
 				});
 
@@ -272,7 +285,7 @@ const UserManagement = ({ tableDataSource = [] }) => {
 				// 新增记录
 				console.log('新增记录~', row);
 
-				const {role_description, ...data} = row;
+				const { role_description, ...data } = row;
 
 				// 调用新增用户接口，使用返回的记录来刷新 setUseTableDataSource
 				sendPost(`/users`, data).then((data) => {
@@ -283,7 +296,7 @@ const UserManagement = ({ tableDataSource = [] }) => {
 					const newParams = Object.assign({}, queryParams);
 					setQueryParams(newParams);
 				});
-				
+
 			}
 		} catch (errInfo) {
 			console.log('Validate Failed:', errInfo);
@@ -311,7 +324,7 @@ const UserManagement = ({ tableDataSource = [] }) => {
 
 	return (
 		<div className={style['wrap']}>
-			<button className={classNames(style["add-btn"], isAddMode? style['btn-disabled']: '') } onClick={() => addRow()} >新增用户</button>
+			<button className={classNames(style["add-btn"], isAddMode ? style['btn-disabled'] : '')} onClick={() => addRow()} >新增用户</button>
 			<div className={style["table-wrap"]}>
 				<Form form={form} component={false}>
 					<Table
@@ -327,7 +340,7 @@ const UserManagement = ({ tableDataSource = [] }) => {
 						rowClassName="editable-row"
 						onChange={handleTableChange}
 						pagination={{
-							position: ['bottomCenter'], 
+							position: ['bottomCenter'],
 							total: useTableDataTotal,
 							showSizeChanger: true,
 							showQuickJumper: true,

@@ -3,7 +3,7 @@
  * @Desc: 文献查询
  * @Date: 2020-05-17 17:31:35
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-04 23:51:32
+ * @LastEditTime: 2020-06-05 22:36:52
  */ 
 
 import React, {useState, useEffect, useRef} from 'react';
@@ -157,24 +157,28 @@ const LiteratureQuery = () => {
 			title: '论文编号',
 			// dataIndex: 'id',
 			dataIndex: 'rowNumber',
+			width: 90,
 		},
 		{
 			title: '论文名称',
 			dataIndex: 'name',
+			width: 350,
 		},
 		{
 			title: '标签',
 			dataIndex: 'tags',
+			width: 200,
 		},
 		{
 			title: '上传时间',
 			dataIndex: 'creation_datetime',
 			sorter: true,
+			width: 150,
 		},
 		{
 			title: '操作',
 			dataIndex: 'action',
-			width: 262,
+			width: 150,
 			render: (text, record) => (
 				  <div className={style["ope-wrap"]}>
 					<span className={style["ope-view"]}  onClick={() => {

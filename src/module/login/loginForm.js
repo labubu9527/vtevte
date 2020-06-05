@@ -3,7 +3,7 @@
  * @Desc: 登录表单
  * @Date: 2020-05-22 22:27:11
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-05-28 01:57:58
+ * @LastEditTime: 2020-06-05 21:34:43
  */
 
 import React from 'react';
@@ -31,7 +31,7 @@ const LoginForm = () => {
 		// to do：调用登录接口
 		sendPost('/login', { account, password: usePassword }).then((data) => {
 			// 登录成功
-			console.log('登录响应数据：', data);
+			// console.log('登录响应数据：', data);
 			dispatch({type: 'login', data: {p: usePassword, ...data}});
 			// 跳转到主界面
 			history.push("/main");

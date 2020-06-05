@@ -3,7 +3,7 @@
  * @Desc: 新增（上传）论文弹框使用的表单
  * @Date: 2020-05-17 22:53:31
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-05-30 15:55:23
+ * @LastEditTime: 2020-06-05 22:27:10
  */
 import React from 'react';
 import { Form, Input, Button, Upload, message } from 'antd';
@@ -60,23 +60,12 @@ const AddForm = ({modalCloseFun, callback}) => {
 					rules={[
 						{
 							required: true,
+							max: 100
 						},
 					]}
 				>
 					<Input placeholder="请输入论文名称" />
 				</Form.Item>
-
-				{/* <Form.Item
-					name="file"
-					label="上传论文"
-					rules={[
-						{
-							required: true,
-						},
-					]}
-				>
-					<input type="file"/>
-				</Form.Item> */}
 
 				<Form.Item
 					name="pdf"
@@ -100,11 +89,12 @@ const AddForm = ({modalCloseFun, callback}) => {
 				<Form.Item
 					name="tags"
 					label="标签"
-					// rules={[
-					// 	{
-					// 		required: true,
-					// 	},
-					// ]}
+					rules={[
+						{
+							// required: true,
+							max: 100
+						},
+					]}
 				>
 					<TextArea rows={4} />
 				</Form.Item>

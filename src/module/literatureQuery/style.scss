@@ -76,7 +76,7 @@
 	> span{
 		@include flexCenter;
 		@include hover;
-		padding: 0 20px;
+		width: 105px;
 		&::before{
 			content: '';
 			display: inline-block;
@@ -85,6 +85,12 @@
 			margin-right: 6px;
 			background: no-repeat center;
 		}
+	}
+	> span:nth-of-type(1){
+		padding: 0 20px 0 10px;
+	}
+	> span:nth-of-type(2){
+		padding: 0 10px 0 20px;
 	}
 	i{
 		display: inline-block;
