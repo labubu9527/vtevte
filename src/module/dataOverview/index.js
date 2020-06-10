@@ -3,7 +3,7 @@
  * @Desc: 数据概览
  * @Date: 2020-05-16 11:16:43
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-05 22:51:25
+ * @LastEditTime: 2020-06-10 23:13:01
  */ 
 
 import React, {useState, useEffect} from 'react';
@@ -89,8 +89,13 @@ const DataOverview = () => {
 			trigger: 'item',
 			position: 'top',
 			padding: [10, 27],
+			textStyle: {
+				fontFamily: 'PingFangSC-Light',
+				fontSize: 14,
+				color: '#FFFFFF'
+			},
 			backgroundColor: '#3C3F4E',
-			formatter: '{b}<br>人数统计：{c}人'
+			formatter: '<font style="font-family: PingFangSC-Medium; font-size: 16px;">{b}</font><br>人数统计：{c}人'
 		},
 		xAxis: {
 			type: 'category',
@@ -248,8 +253,13 @@ const DataOverview = () => {
 			trigger: 'item',
 			position: 'top',
 			padding: [10, 27],
+			textStyle: {
+				fontFamily: 'PingFangSC-Light',
+				fontSize: 14,
+				color: '#FFFFFF'
+			},
 			backgroundColor: '#3C3F4E',
-			formatter: '怀孕{b}次<br>人数统计：{c}人'
+			formatter: '<font style="font-family: PingFangSC-Medium; font-size: 16px;">怀孕{b}次</font><br>人数统计：{c}人'
 		},
 		xAxis: {
 			name: '怀孕次数',

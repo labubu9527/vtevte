@@ -15,8 +15,8 @@
 
 .left{
 	flex-shrink: 0;
-	width: 23%;
-	min-width: 330px;
+	width: 25%;
+	min-width: 350px;
 	border-right: 1px solid #E4E7ED;
 }
 
@@ -43,6 +43,7 @@
 		@include hover;
 		width: 75px;
 		height: 32px;
+		margin-left: 40px;
 		line-height: 32px;
 		background: #1989FA;
 		border-radius: 4px;

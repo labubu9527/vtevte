@@ -16812,6 +16812,10 @@ textarea.ant-input-affix-wrapper {
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
           box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+
+  /* hack */
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .ant-input-rtl .ant-input:focus,
 .ant-input-rtl .ant-input-focused {
@@ -24159,6 +24163,7 @@ textarea.ant-mentions {
 
   /* hack */
   border: 1px solid #ededee;
+  word-break: break-word;
 }
 .ant-table-tbody > tr.ant-table-row:hover > td {
   background: #fafafa;

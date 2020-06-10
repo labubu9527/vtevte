@@ -3,7 +3,7 @@
  * @Desc: 新增（上传）论文弹框使用的表单
  * @Date: 2020-05-17 22:53:31
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-05 22:27:10
+ * @LastEditTime: 2020-06-10 22:46:17
  */
 import React from 'react';
 import { Form, Input, Button, Upload, message } from 'antd';
@@ -27,6 +27,9 @@ const AddForm = ({modalCloseFun, callback}) => {
 
 	const onFinish = values => {
 		// console.log('onFinish:', values);
+
+		values.pdf = values.pdf[0];
+
 		const {tags} = values;
 		if(tags === undefined){
 			values.tags = '';
@@ -44,7 +47,7 @@ const AddForm = ({modalCloseFun, callback}) => {
 		// name: str, 论文名称
 		// - tags: str, 个人注释
 		// - pdf: binary, pdf 文件
-		return e.file;
+		return [e.file];	// 这里需要固定返回数组，否则会导致在二次选择上传文件的时候报错
 	  };
 
 	const onChange = e => {

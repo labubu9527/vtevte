@@ -3,7 +3,7 @@
  * @Desc: 文献查询
  * @Date: 2020-05-17 17:31:35
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-05 22:36:52
+ * @LastEditTime: 2020-06-10 00:30:30
  */ 
 
 import React, {useState, useEffect, useRef} from 'react';
@@ -228,6 +228,7 @@ const LiteratureQuery = () => {
 				okText="确定"
 				width={554}
 				footer={null}
+				keyboard={false}
 				maskClosable={false}
 				onCancel={closeModal}
 				>
@@ -240,6 +241,7 @@ const LiteratureQuery = () => {
 				okText="确定"
 				width={554}
 				footer={null}
+				keyboard={false}
 				maskClosable={false}
 				onCancel={closeModal}
 				>
@@ -247,11 +249,12 @@ const LiteratureQuery = () => {
 			</Modal>}
 			{viewVisible && <Modal
 				title="查看全文"
+				className={style['fullscreen']}
 				visible={true}
 				cancelText="取消"
 				okText="确定"
-				width={800}
 				footer={null}
+				keyboard={false}
 				maskClosable={false}
 				onCancel={closeModal}
 				>

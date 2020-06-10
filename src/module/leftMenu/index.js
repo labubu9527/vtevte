@@ -3,7 +3,7 @@
  * @Desc: 左侧菜单
  * @Date: 2020-04-25 15:26:31
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-03 23:59:14
+ * @LastEditTime: 2020-06-11 00:05:16
  */
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
@@ -12,11 +12,33 @@ import pagePath from '../../config/pageConfig';
 import { useLoginInfo } from '../../hooks/loginInfo';
 import style from './style.scss?module';
 
+const currentHashPath = window.location.hash.substring(1);
+
 const LeftMenu = () => {
 
 	const history = useHistory();
-	const [openIndex, setOpenIndex] = useState(0);
-	const [activeSubIndex, setActiveSubIndex] = useState(-1);
+	const [openIndex, setOpenIndex] = useState(() => {
+		// 初始化默认选中的一级菜单项
+		// 满足条件：一级菜单被选中或者其二级菜单被选中
+		return pagePath.findIndex(({toPath, subList}) => toPath === currentHashPath || (subList && subList.find((item) => {
+			return item.toPath === currentHashPath;
+		})) );
+	});
+	const [activeSubIndex, setActiveSubIndex] = useState(() => {
+		// 初始化默认选中的二级菜单项
+
+		return pagePath.reduce((acc, cur) => {
+			const {subList} = cur;
+			const result = (subList && subList.findIndex((item) => {
+				return item.toPath === currentHashPath;
+			}));
+			return (result === undefined || result === -1)? acc: result;
+		}, -1);
+
+		// return pagePath.findIndex(({subList}) => subList && subList.findIndex((item) => {
+		// 	return item.toPath === currentHashPath;
+		// }));
+	});
 	const [{ userInfo }] = useLoginInfo();
 
 	const currentUserRole = userInfo.session.role_code;

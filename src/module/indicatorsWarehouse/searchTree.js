@@ -3,7 +3,7 @@
  * @Desc: 左侧指标仓库树
  * @Date: 2020-05-17 14:42:08
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-05 00:08:28
+ * @LastEditTime: 2020-06-10 23:28:50
  */
 import React, {useState} from 'react';
 import { Tree, Input } from 'antd';
@@ -42,6 +42,8 @@ const SearchTree = ({setActiveIndicators, treeOriginData = mockData}) => {
 		autoExpandParent: true,
 	});
 
+	const [currentIndicators, setCurrentIndicators] = useState([]);
+
 	const onExpand = expandedKeys => {
 		setStatus({
 			searchValue,
@@ -59,11 +61,17 @@ const SearchTree = ({setActiveIndicators, treeOriginData = mockData}) => {
 			const level1Node = treeRenderData.find(item => item.key === selectedKeys[0]);
 			const {children} = level1Node;
 			const arrKey = children.map(({key}) => key);
-			setActiveIndicators(arrKey);
+			// setActiveIndicators(arrKey);
+			setCurrentIndicators(arrKey);
 		}else{
 			// 点击的是第二层具体某个子节点
-			setActiveIndicators(selectedKeys);
+			// setActiveIndicators(selectedKeys);
+			setCurrentIndicators(selectedKeys);
 		}
+	};
+
+	const submit = () => {
+		setActiveIndicators(currentIndicators);
 	};
 
 	const onChange = e => {
@@ -111,8 +119,8 @@ const SearchTree = ({setActiveIndicators, treeOriginData = mockData}) => {
 		<div>
 			<div className={style["search-bar"]}>
 				{/* <Search placeholder="字段名称" onChange={this.onChange} /> */}
-				<input type="text" placeholder="输入字段名称自动检索指标" onChange={onChange}/>
-				{/* <button type="button">查询</button> */}
+				<input type="text" placeholder="字标名称" onChange={onChange}/>
+				<button type="button" onClick={submit} >查询</button>
 			</div>
 			<div className={style["tree-wrap"]}>
 				<Tree

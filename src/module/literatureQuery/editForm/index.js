@@ -3,7 +3,7 @@
  * @Desc: 编辑论文弹框使用的表单
  * @Date: 2020-05-17 22:53:31
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-05-28 22:09:40
+ * @LastEditTime: 2020-06-10 22:10:34
  */
 import React from 'react';
 import { Form, Input, Button, message } from 'antd';
@@ -59,11 +59,12 @@ const EditForm = ({modalCloseFun, formData, callback}) => {
 				<Form.Item
 					name="tags"
 					label="标签"
-					// rules={[
-					// 	{
-					// 		required: true,
-					// 	},
-					// ]}
+					rules={[
+						{
+							// required: true,
+							max: 100
+						},
+					]}
 				>
 					<TextArea rows={4}/>
 				</Form.Item>

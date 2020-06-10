@@ -3,7 +3,7 @@
  * @Desc: 查看论文弹框使用的表单
  * @Date: 2020-05-17 22:53:31
  * @LastEditors: cdluxy
- * @LastEditTime: 2020-06-04 23:22:03
+ * @LastEditTime: 2020-06-10 00:25:39
  */
 import React, { useState, useEffect, useRef } from 'react';
 import { sendGet } from 'rootSrc/common/request';
@@ -80,7 +80,7 @@ const ViewForm = ({modalCloseFun, formData}) => {
 		<div className={style["wrap"]}>
 			<div className={style["btn-area"]}>
 				<a className={style["download"]} href={pdfAddress} download={name + '.pdf'} >下载论文</a>
-				<button onClick={() => fullscreen()} className={style["full"]} >全屏查看</button>
+				{/* <button onClick={() => fullscreen()} className={style["full"]} >全屏查看</button> */}
 			</div>
 			<div className={style["title"]}>{name}</div>
 			<div className={style["content"]}>
