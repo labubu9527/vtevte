@@ -57,7 +57,7 @@ function hideLoading(){
 
 function commonHandle(type, url, data, config = {isForm: false, isBlob: false}){
 
-	console.log(`${type} request url:`, url);
+	// console.log(`${type} request url:`, url);
 
 	const loginInfo = sessionStorage.getItem('loginInfo');
 	let token = '';

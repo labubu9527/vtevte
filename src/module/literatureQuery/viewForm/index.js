@@ -76,6 +76,7 @@ const ViewForm = ({modalCloseFun, formData}) => {
  */
 	const {name} = formData;
 
+	// 使用object标签而不是iframe标签，是因为在safari浏览器下有兼容性向问题
 	return (
 		<div className={style["wrap"]}>
 			<div className={style["btn-area"]}>
@@ -84,8 +85,8 @@ const ViewForm = ({modalCloseFun, formData}) => {
 			</div>
 			<div className={style["title"]}>{name}</div>
 			<div className={style["content"]}>
-				<iframe ref={wrapEl} width="100%" height="100%" src={pdfAddress} frameBorder="0"></iframe>
-				{/* <object data={pdfAddress} type="application/pdf" width="100%" height="100%"></object> */}
+				{/* <iframe ref={wrapEl} width="100%" height="100%" src={pdfAddress} frameBorder="0"></iframe> */}
+				<object data={pdfAddress} type="application/pdf" width="100%" height="100%"></object>
 			</div>
 		</div>
 	);

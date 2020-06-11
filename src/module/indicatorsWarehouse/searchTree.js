@@ -5,7 +5,7 @@
  * @LastEditors: cdluxy
  * @LastEditTime: 2020-06-10 23:28:50
  */
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { Tree, Input } from 'antd';
 import style from './style.scss?module';
 
@@ -42,7 +42,9 @@ const SearchTree = ({setActiveIndicators, treeOriginData = mockData}) => {
 		autoExpandParent: true,
 	});
 
-	const [currentIndicators, setCurrentIndicators] = useState([]);
+	const inputRef = useRef(null);
+
+	// const [currentIndicators, setCurrentIndicators] = useState([]);
 
 	const onExpand = expandedKeys => {
 		setStatus({
@@ -61,20 +63,31 @@ const SearchTree = ({setActiveIndicators, treeOriginData = mockData}) => {
 			const level1Node = treeRenderData.find(item => item.key === selectedKeys[0]);
 			const {children} = level1Node;
 			const arrKey = children.map(({key}) => key);
-			// setActiveIndicators(arrKey);
-			setCurrentIndicators(arrKey);
+			setActiveIndicators(arrKey);
+			// setCurrentIndicators(arrKey);
 		}else{
 			// 点击的是第二层具体某个子节点
-			// setActiveIndicators(selectedKeys);
-			setCurrentIndicators(selectedKeys);
+			setActiveIndicators(selectedKeys);
+			// setCurrentIndicators(selectedKeys);
 		}
 	};
 
 	const submit = () => {
-		setActiveIndicators(currentIndicators);
+		// setActiveIndicators(currentIndicators);
+		const {value} = inputRef.current;
+		const expandedKeys = treeRenderData.map(({children}) => {
+				return children && children.map(({key, title}) => value && title.includes(value)? key: null);
+			}).flat().filter(item => !!item);
+		// console.log('onChange expandedKeys:', expandedKeys);
+		setStatus({
+			expandedKeys,
+			searchValue: value,
+			autoExpandParent: true,
+		});
+		setActiveIndicators(expandedKeys);
 	};
 
-	const onChange = e => {
+	/* const onChange = e => {
 		const { value } = e.target;
 		const expandedKeys = treeRenderData.map(({children}) => {
 				return children && children.map(({key, title}) => value && title.includes(value)? key: null);
@@ -86,7 +99,7 @@ const SearchTree = ({setActiveIndicators, treeOriginData = mockData}) => {
 			autoExpandParent: true,
 		});
 	};
-
+ */
 	// render() {
 	const { searchValue, expandedKeys, autoExpandParent } = status;
 	const loop = data => {
@@ -119,7 +132,7 @@ const SearchTree = ({setActiveIndicators, treeOriginData = mockData}) => {
 		<div>
 			<div className={style["search-bar"]}>
 				{/* <Search placeholder="字段名称" onChange={this.onChange} /> */}
-				<input type="text" placeholder="字标名称" onChange={onChange}/>
+				<input ref={inputRef} type="text" placeholder="字标名称" /* onChange={onChange} *//>
 				<button type="button" onClick={submit} >查询</button>
 			</div>
 			<div className={style["tree-wrap"]}>
