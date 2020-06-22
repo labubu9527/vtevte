@@ -4,6 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	user-select: none;
+	padding: 10px 0;
 }
 
 .menu-first.open{
@@ -23,7 +24,7 @@
 
 .first-title{
 	@include flexYCenter;
-	height: 54px;
+	height: 46px;
 	margin: 0 3px 0 26px;
 	opacity: .7;
 	cursor: pointer;

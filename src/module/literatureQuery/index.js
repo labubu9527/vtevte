@@ -217,7 +217,7 @@ const LiteratureQuery = () => {
 				<div className={style["down"]}>
 					<div className={style["title"]}>网站导航</div>
 					<div className={style["link-wrap"]}>
-						{arrLink.map(({img, name, link}, index) => <a key={index} href={link} target="_blank"><img src={img} alt=""/>{name}</a> )}
+						{arrLink.map(({img, name, link}, index) => <a key={index} href={link} target="_blank"><span><img src={img} alt=""/></span><span>{name}</span></a> )}
 					</div>
 				</div>
 			</div>

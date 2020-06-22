@@ -139,17 +139,24 @@
 		float: left;
 		@include flexCenter;
 		@include hover;
-		width: 267px;
+		width: 300px;
 		height: 50px;
 		margin: 20px 20px 0 0;
 		vertical-align: top;
 		background: #FFFFFF;
 		border: 1px solid #EBEBEC;
 		border-radius: 2px;
+		> span:nth-of-type(1){
+			width: 50%;
+			text-align: center;
+		}
+		> span:nth-of-type(2){
+			width: 50%;
+			text-align: left;
+		}
 		img{
 			max-width: 115px;
 			max-height: 34px;
-			margin-right: 25px;
 		}
 	}
 }
